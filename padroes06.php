@@ -16,5 +16,7 @@ echo '<pre>';
 var_dump($jogador2);
 
 $jogador3 = JogadorDeXadrez::getJogador3();
+var_dump($jogador3);
 
+$jogador3 = clone $jogador2;
 var_dump($jogador3);

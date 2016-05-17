@@ -37,12 +37,22 @@ class JogadorDeXadrez
             }
             
             if(self::$jogadores[$numInstancias] == null){
-                self::$jogadores[$numInstancias] = new JogadorDeXadrez();
+                self::$jogadores[$numInstancias] = new static();
             }
         
             return self::$jogadores[$numInstancias];
         }
     }
+    
+    /**
+     * Prevent cloning.
+     *
+     * @throws \RuntimeException
+     */
+   final public function __clone()
+   {
+       throw new \RuntimeException('Não é permitido clonar um jogador para a classe ' . get_class($this));
+   }    
 }
 
 
