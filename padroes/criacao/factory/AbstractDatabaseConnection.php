@@ -56,4 +56,26 @@ class AbstractDatabaseConnection implements IDatabaseConnection
     {
         return null;
     }    
+    
+    /**
+     * 
+     */
+    public static function factory(array $properties)
+    {
+        foreach($properties as $property => $value){
+            $$property = $value;
+        }
+        
+        $connection = null;
+        
+        $className = 'padroes\criacao\factory\\' . ucwords($adapter) . 'DatabaseConnection';
+        
+        try{
+            $connection = new $className($username, $password, $dbname, $host, $port);
+        } catch (Exception $ex) {
+            echo $e->getTraceAsString();
+        }
+        
+        return $connection;
+    }
 }
